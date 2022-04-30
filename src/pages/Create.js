@@ -7,6 +7,9 @@ import SendIcon from '@material-ui/icons/Send';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import { makeStyles } from '@material-ui/core';
 
+const useStyles = makeStyles({})
+
+{/*
 const useStyles = makeStyles({
   btn: {
     fontSize: 60,
@@ -20,6 +23,7 @@ const useStyles = makeStyles({
     marginBottom: 20
   }
 })
+*/}
 
 export default function Create() {
   const classes = useStyles()
@@ -54,7 +58,7 @@ export default function Create() {
       <Button
         className={classes.btn} 
         type='submit' 
-        color='primary' 
+        color='secondary' 
         variant='contained' 
         onClick={() => alert('Hello! Welocme to Lean-Material-UI@madhav')}
         endIcon={<KeyboardArrowRightIcon />}  
