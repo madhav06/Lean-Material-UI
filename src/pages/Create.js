@@ -5,8 +5,13 @@ import Container from '@material-ui/core/Container';
 import AcUnitOutlinedIcon from '@material-ui/icons/AcUnitOutlined';
 import SendIcon from '@material-ui/icons/Send';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import { makeStyles } from '@material-ui/core';
+import {FormControlLabel, makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 
 const useStyles = makeStyles({
   field: {
@@ -38,6 +43,7 @@ export default function Create() {
   const [details, setDetails] = useState('')
   const [titleError, setTitleError] = useState(false)
   const [detailsError, setDetailsError] = useState(false)
+  const [category, setCategory] = useState('work')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -53,7 +59,7 @@ export default function Create() {
     }
 
     if(title && details) {
-      console.log(title, details)
+      console.log(title, details, category)
     }
   }
 
@@ -95,6 +101,21 @@ export default function Create() {
           rows={4}
           error={detailsError}
         />
+
+        <FormControl className={classes.field}>
+          <FormLabel>Choose A Category:</FormLabel>
+          <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)} >
+          <FormControlLabel 
+            control={<Radio />} label='Work' value='work'
+          />
+          <FormControlLabel 
+            control={<Radio />} label='Personal' value='personal'
+          />
+          <FormControlLabel 
+            control={<Radio />} label='Reminder' value='reminder'
+          />
+          </RadioGroup>
+        </FormControl>
 
         <Button
           className={classes.btn} 
