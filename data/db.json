@@ -1,0 +1,52 @@
+{
+  "paintings": [
+    {
+      "remarks": "Himalayan Mountain Backlit Wall Art",
+      "details": "Brilliant design, unique wood texture. Ideal for living room, bedroom, dining room etc.",
+      "category": "24×30 Inches",
+      "id": 1
+    },
+    {
+      "remarks": "Into The Wind Painting",
+      "details": "One-of-a-kind Artwork, Acrylic and paper mounted on wooden panel, framed with walnut. Matte surface. Signed on the reverse.",
+      "category": "5×7 Inches",
+      "id": 2
+    },
+    {
+      "remarks": "Life in the Dunes Painting",
+      "details": "This piece has a smooth satin finish, gallery depth bars and the painting that wraps around edges. Wired and ready to hang. Signed on the reverse.",
+      "category": "11×14 Inches",
+      "id": 3
+    },
+    {
+      "remarks": "Ram Sita Madhubani Painting",
+      "details": "Ram Sita painting by mithilesh jha, madhubani painting art. Customized printing on canvas/art paper are also available.",
+      "category": "8×10 Inches",
+      "id": 4
+    },
+    {
+      "remarks": "Rocking Lady ",
+      "details": "Museum Quality - 100% Handpainted. Oil and Acrylic Colors. Framed/ Unframed available.",
+      "category": "8×10 Inches",
+      "id": 5
+    },
+    {
+      "remarks": "Rajsthani Women - Handpainted Art",
+      "details": "Painting by Community Artist Group, 100% Handpainted on canvas surface. Available in custom sizes.",
+      "category": "16×20 Inches",
+      "id": 6
+    },
+    {
+      "remarks": "Annapakshi Small - Tanjore Painting",
+      "details": "Multicolor tanjore painting by Heritage Arts, Available in custom sizes.",
+      "category": "5×7 Inches",
+      "id": 7
+    },
+    {
+      "remarks": "Optimum Abstract metal Wall Art",
+      "details": "Designer Wall Art. Made of resilient metal, Large in size which perfectly accentuates your wall. Ideal for living room. Delicately decorated with hands, this piece is a unique semblance.",
+      "size": "24×30 Inches",
+      "id": 8
+    }
+  ]
+}
