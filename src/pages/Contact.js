@@ -39,27 +39,34 @@ const useStyles = makeStyles({
 })
 */}
 
-export default function Create() {
+export default function Contact() {
 
   const history = useHistory()
   const classes = useStyles()
-  const [remarks, setRemarks] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [details, setDetails] = useState('')
   const [img, setImg] = useState('')
-  const [remarksError, setRemarksError] = useState(false)
+  const [nameError, setNameError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
   const [detailsError, setDetailsError] = useState(false)
   const [imgError, setImgError] = useState(false)
-  const [category, setCategory] = useState('8×10 Inches')
+  const [size, setSize] = useState('8×10 Inches')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setRemarksError(false)
+    setNameError(false)
+    setEmailError(false)
     setDetailsError(false)
     setImgError(false)
 
-    if (remarks == ''){
-      setRemarksError(true)
+    if (name == ''){
+      setNameError(true)
     }
+
+    if (email == ''){
+        setEmailError(true)
+      }
 
     if (details == ''){
       setDetailsError(true)
@@ -69,12 +76,12 @@ export default function Create() {
       setImgError(true)
     }
 
-    if(remarks && details) {
+    if(name && email && details) {
       // console.log(title, details, category)
       fetch('http://localhost:9000/paintings', {
         method: 'POST',
         headers: {'Content-type': 'application/json'},
-        body: JSON.stringify({remarks, details, category})
+        body: JSON.stringify({name, email,details, size})
       }).then(() => history.push('/'))
     }
   }
@@ -90,25 +97,39 @@ export default function Create() {
         color='secondary'
         align='center'
       >
-        Order A Custom Painting
+        Get in Touch
       </Typography>
 
       <form noValidate autoComplete='off' onSubmit={handleSubmit}>
         <TextField
           className={classes.field}
-          onChange={(e) => setRemarks(e.target.value)}
-          label='Remarks for Paintings'
+          onChange={(e) => setName(e.target.value)}
+          label='Your Full Name'
           color='secondary'
           variant='outlined'
           fullWidth
           required
-          error={remarksError}
+          columns={2}
+          error={nameError}
+        />
+       
+        
+        <TextField
+          className={classes.field}
+          onChange={(e) => setEmail(e.target.value)}
+          label='Your Email'
+          color='secondary'
+          variant='outlined'
+          fullWidth
+          required
+          columns={2}
+          error={emailError}
         />
 
         <TextField
           className={classes.field}
           onChange={(e) => setDetails(e.target.value)}
-          label='Description'
+          label='Your Message'
           color='secondary'
           variant='outlined'
           fullWidth
@@ -118,31 +139,6 @@ export default function Create() {
           error={detailsError}
         />
 
-        <FormControl className={classes.field}>
-          <FormLabel>Select a size:</FormLabel>
-          <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)} >
-          <FormControlLabel 
-            control={<Radio />} label='5×7 Inches' value='5×7 Inches'
-          />
-          <FormControlLabel 
-            control={<Radio />} label='8×10 Inches' value='8×10 Inches'
-          />
-          <FormControlLabel 
-            control={<Radio />} label='11×14 Inches' value='11×14 Inches'
-          />
-          <FormControlLabel 
-            control={<Radio />} label='16×20 Inches' value='16×20 Inches'
-          />
-          <FormControlLabel 
-            control={<Radio />} label='18×24 Inches' value='18×24 Inches'
-          />
-          <FormControlLabel 
-            control={<Radio />} label='24×30 Inches' value='24×30 Inches'
-          />
-
-          </RadioGroup>
-        </FormControl>
-
         <Button
           className={classes.btn} 
           type='submit' 
@@ -150,7 +146,7 @@ export default function Create() {
           variant='contained'
           endIcon={<KeyboardArrowRightIcon />}  
         >
-          Submit
+          Send
         </Button>
       </form>
 
