@@ -11,6 +11,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -20,6 +21,7 @@ const useStyles = makeStyles({
     display: 'block'
   }
 })
+ 
 
 {/*
 const useStyles = makeStyles({
@@ -38,28 +40,35 @@ const useStyles = makeStyles({
 */}
 
 export default function Create() {
+
+  const history = useHistory()
   const classes = useStyles()
-  const [title, setTitle] = useState('')
+  const [remarks, setRemarks] = useState('')
   const [details, setDetails] = useState('')
-  const [titleError, setTitleError] = useState(false)
+  const [remarksError, setRemarksError] = useState(false)
   const [detailsError, setDetailsError] = useState(false)
-  const [category, setCategory] = useState('work')
+  const [size, setSize] = useState('8×10 Inches')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setTitleError(false)
+    setRemarksError(false)
     setDetailsError(false)
 
-    if (title == ''){
-      setTitleError(true)
+    if (remarks == ''){
+      setRemarksError(true)
     }
 
     if (details == ''){
       setDetailsError(true)
     }
 
-    if(title && details) {
-      console.log(title, details, category)
+    if(remarks && details) {
+      // console.log(title, details, category)
+      fetch('http://localhost:9000/paintings', {
+        method: 'POST',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({remarks, details, size})
+      }).then(() => history.push('/'))
     }
   }
 
@@ -67,32 +76,32 @@ export default function Create() {
     <Container>
       <Typography
 
-        className={classes.title} 
+        className={classes.remarks} 
         variant='h6'
         component='h2'
         gutterBottom
         color='secondary'
         align='center'
       >
-        Create a new Note
+        Order A Custom Painting
       </Typography>
 
       <form noValidate autoComplete='off' onSubmit={handleSubmit}>
         <TextField
           className={classes.field}
-          onChange={(e) => setTitle(e.target.value)}
-          label='Note Title'
+          onChange={(e) => setRemarks(e.target.value)}
+          label='Remarks for Paintings'
           color='secondary'
           variant='outlined'
           fullWidth
           required
-          error={titleError}
+          error={remarksError}
         />
 
         <TextField
           className={classes.field}
           onChange={(e) => setDetails(e.target.value)}
-          label='Details'
+          label='Description'
           color='secondary'
           variant='outlined'
           fullWidth
@@ -103,17 +112,27 @@ export default function Create() {
         />
 
         <FormControl className={classes.field}>
-          <FormLabel>Choose A Category:</FormLabel>
-          <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)} >
+          <FormLabel>Select a size:</FormLabel>
+          <RadioGroup value={size} onChange={(e) => setSize(e.target.value)} >
           <FormControlLabel 
-            control={<Radio />} label='Work' value='work'
+            control={<Radio />} label='5×7 Inches' value='5×7 Inches'
           />
           <FormControlLabel 
-            control={<Radio />} label='Personal' value='personal'
+            control={<Radio />} label='8×10 Inches' value='8×10 Inches'
           />
           <FormControlLabel 
-            control={<Radio />} label='Reminder' value='reminder'
+            control={<Radio />} label='11×14 Inches' value='11×14 Inches'
           />
+          <FormControlLabel 
+            control={<Radio />} label='16×20 Inches' value='16×20 Inches'
+          />
+          <FormControlLabel 
+            control={<Radio />} label='18×24 Inches' value='18×24 Inches'
+          />
+          <FormControlLabel 
+            control={<Radio />} label='24×30 Inches' value='24×30 Inches'
+          />
+
           </RadioGroup>
         </FormControl>
 
